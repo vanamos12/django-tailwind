@@ -1,11 +1,13 @@
-{% extends './layout/base.html' %}
+{% extends 'authen/layout/base.html' %}
 
-{% block title %}
-Mon premier fichier
-{% endblock title %}
+<!-- Bloc -->
+{% block title %} Mon premier fichier {% endblock title %}
 
+<!-- Autre blocs -->
 {% block content %}
-<h1>Hello World  {{age}} </h1>
-    <h1>Hello Sum  {{sum}} </h1>
-    <h1 class="text-4xl text-blue-900">Tailwing V4</h1>
+<h1 class="text-3xl text-amber-600 font-bold">App authentification</h1>
+<div class="flex flex-col">
+  <div><a href="{% url 'login' %}">Connexion</a></div>
+  <div><a href="{% url 'register' %}"> Inscription</a></div>
+</div>
 {% endblock content %}

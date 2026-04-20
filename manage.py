@@ -3,6 +3,8 @@
 import os
 import sys
 
+os.environ["PYTHONUTF8"] = "1"
+
 
 def main():
     """Run administrative tasks."""
