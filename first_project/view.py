@@ -6,6 +6,8 @@ def index(request):
 	return render(request, 'index.html', {'age': age, 'sum': sum})
 
 def login(request):
+	print(request.POST.get('username', 'not yet'))
+	print(request.POST.get('password', 'not yet'))
 	return render(request, 'login.html', {})
 
 def register(request):
