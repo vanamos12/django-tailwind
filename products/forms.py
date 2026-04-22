@@ -15,7 +15,7 @@ class ProductForm(forms.Form):
             'placeholder': 'Entrer le libelé du produit',
             'id': 'libele',
             'name': 'libele'}))
-    description = forms.CharField(required=True, label='Description', widget=forms.Textarea(
+    description = forms.CharField(required=True, label='Description', max_length=3000, min_length=1, widget=forms.Textarea(
         attrs={
             'class': 'description form-control',
             'placeholder': 'Entrer la description du produit',
@@ -27,7 +27,7 @@ class ProductForm(forms.Form):
             'placeholder': 'Entrer le prix du produit',
             'id': 'prix',
             'name': 'prix'}))
-    image = forms.ImageField(required=True, label='Image', widget=forms.ClearableFileInput(
+    image = forms.ImageField(required=True, label='Image', widget=forms.FileInput(
         attrs={
             'class': 'image form-control',
             'id': 'image',
