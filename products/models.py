@@ -3,6 +3,15 @@ from django.core.validators import FileExtensionValidator, MinLengthValidator
 
 # Create your models here.
 class Product(models.Model):
-    libele = models.CharField(max_length=100, validators=[MinLengthValidator(2, message='le nombre de caractere doit etre superieur a deux')], null=False, blank=False)
-    description = models.CharField(max_length=100, validators=[MinLengthValidator(2, message='le nombre de caractere doit etre superieur a deux')], null=False, blank=False)
-    profil  = models.ImageField(upload_to='image/profils/', null= True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif'])])
+    libele = models.CharField(max_length=100, validators=[MinLengthValidator(2, message="Le minimun de caractere c'est 2")], null=False, blank=False)
+    prix= models.DecimalField(max_digits=10, decimal_places=2)
+    description=models.TextField(validators=[MinLengthValidator(10, message="Le nombre de caractere doit suprerieur a 10")])
+    stock= models.IntegerField(default=0)
+    image= models.ImageField(default=True, upload_to='images/products/', null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'webp'])])
+    created_at=models.TimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.libele
+
+
+    
