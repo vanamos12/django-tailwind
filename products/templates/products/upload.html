@@ -1,16 +1,39 @@
+{% load static tailwind_tags %}
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
     <title>From Produit</title>
   </head>
-  <body>
+  <body class="w-1/2 mx-auto">
     <form method="POST" action="" enctype="multipart/form-data">
       {% csrf_token %}
       <!--  -->
-      {{ form.as_p}}
-      <button type="submit">Ajouter</button>
+      <h1 class="text-center text-4xl font-bold">Update or Create a product</h1>
+      <div class="py-4">
+        <label for="libele" class="block mb-2.5 text-sm font-medium text-heading">Libele</label>
+        <input type="text" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" value="{{ product.libele }}" name="libele" id="libele">
+      </div>
+      <div class="py-4">
+        <label for="description" class="block mb-2.5 text-sm font-medium text-heading">Description</label>
+        <textarea name="description" id="description" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body">{{ product.description }}</textarea>
+      </div>
+      <div class="py-4">
+        <label for="prix" class="block mb-2.5 text-sm font-medium text-heading">Prix</label>
+        <input type="number" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" value="{{ product.prix }}" name="prix" id="prix"> 
+      </div>
+      <div class="py-4">
+        <label for="image" class="block mb-2.5 text-sm font-medium text-heading">Image</label> 
+        <img src="{{ product.image.url }}" alt="" width="200">
+        <input type="file" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" name="image" id="image">
+      </div>
+      <div class="py-4">
+        <label for="stock" class="block mb-2.5 text-sm font-medium text-heading">Stock</label>
+        <input type="number" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" value="{{ product.stock }}" name="stock" id="stock"> 
+      </div>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200">Ajouter</button>
     </form>
   </body>
 </html>

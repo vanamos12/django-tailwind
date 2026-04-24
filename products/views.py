@@ -15,9 +15,42 @@ def product_upload(request):
         form= ProductForm(request.POST, request.FILES)
         if form.is_valid():
         
-            form.save()
+            #form.save()
+            Product.objects.create(
+                libele=form.cleaned_data.get('libele'),
+                description=form.cleaned_data.get('description'),
+                prix=form.cleaned_data.get('prix'),
+                image=form.cleaned_data.get('image'),
+                stock=form.cleaned_data.get('stock')
+            )
             return redirect('allproduct')
     else:
         form= ProductForm()
     return render(request, 'products/upload.html', {'form': form})
         
+def product_update(request, id):
+    product = Product.objects.get(id=id)
+    if request.method =='POST':
+        form = ProductForm(request.POST, request.FILES)
+        product.libele = form.cleaned_data.get('libele')
+        product.description = form.cleaned_data.get('description')  
+        product.prix = form.cleaned_data.get('prix')
+        product.image = form.cleaned_data.get('image')  
+        product.stock = form.cleaned_data.get('stock')
+        product.save()
+        return redirect('allproduct')
+    else:
+        #form = ProductForm(instance=product)
+        pass
+    return render(request, 'products/upload.html', {'product': product})
+
+def product_delete(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.delete()
+    
+    return redirect('allproduct')
+
+def product_detail(request, id):
+    product = Product.objects.get(id=id)
+    return render(request, 'products/detail.html', {'product': product})
