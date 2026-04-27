@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
+from django.core.validators import FileExtensionValidator, MinLengthValidator
 
 # Create your models here.
 class Product(models.Model):
@@ -9,6 +9,7 @@ class Product(models.Model):
     stock= models.IntegerField(default=0)
     image= models.ImageField(default=True , upload_to='media')
     created_at=models.TimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.libele
 
