@@ -32,13 +32,17 @@ def product_update(request, id):
     product = Product.objects.get(id=id)
     if request.method =='POST':
         form = ProductForm(request.POST, request.FILES)
-        product.libele = form.cleaned_data.get('libele')
-        product.description = form.cleaned_data.get('description')  
-        product.prix = form.cleaned_data.get('prix')
-        product.image = form.cleaned_data.get('image')  
-        product.stock = form.cleaned_data.get('stock')
-        product.save()
-        return redirect('allproduct')
+        if form.is_valid():
+            product.libele = form.cleaned_data.get('libele')
+            product.description = form.cleaned_data.get('description')  
+            product.prix = form.cleaned_data.get('prix')
+            product.image = form.cleaned_data.get('image')  
+            product.stock = form.cleaned_data.get('stock')
+            product.save()
+            return redirect('allproduct')
+        else:
+            return 
+        
     else:
         #form = ProductForm(instance=product)
         pass

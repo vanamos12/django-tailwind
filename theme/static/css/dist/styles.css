@@ -278,6 +278,9 @@
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
   }
+  .mb-8 {
+    margin-bottom: calc(var(--spacing) * 8);
+  }
   .ml-3 {
     margin-left: calc(var(--spacing) * 3);
   }
@@ -286,9 +289,6 @@
   }
   .flex {
     display: flex;
-  }
-  .table {
-    display: table;
   }
   .h-4 {
     height: calc(var(--spacing) * 4);
@@ -310,9 +310,6 @@
   }
   .max-w-\[340px\] {
     max-width: 340px;
-  }
-  .table-auto {
-    table-layout: auto;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
