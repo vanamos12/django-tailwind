@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import all_product, product_upload, product_update, product_delete, product_detail
+from .views import all_product, product_upload,table_products, delet_product,detaille_product,update_product
 
 # Les path
 urlpatterns = [
     path('', all_product, name='allproduct'),
-    path('upload/', product_upload, name='upload'),
-    path('update/<int:id>/', product_update, name='product_update'),
-    path('delete/<int:id>/', product_delete, name='product_delete'),    
-    path('detail/<int:id>/', product_detail, name='product_detail'),
+    path('upload', product_upload, name='upload'),
+    path('table', table_products, name='table' ),
+    path('delet/<int:id>' , delet_product, name='delet_product'),
+    path('details/<int:id>' , detaille_product, name='detaille'),
+    path('update/<int:id>', update_product, name='update')
 ]

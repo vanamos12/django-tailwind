@@ -1,50 +1,34 @@
-{% load static tailwind_tags %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% tailwind_css %}
-    <title>Produit || All</title>
-  </head>
-  <body class="p-4">
-    <h1 class="text-center text-4xl font-bold">All Products</h1>
-    <a href="{% url 'upload' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200 mb-8">Nouveau Produit</a>
-    <table class="w-full text-sm text-left rtl:text-right text-body">
-      <thead class="text-slate-900 dark:text-slate-50 text-left text-sm font-semibold border-b border-slate-300 dark:border-neutral-600 whitespace-nowrap">
-        <tr class="bg-slate-50 dark:bg-neutral-800">
-          <th scope="col" class="px-6 py-3">Libele</th>
-          <th scope="col" class="px-6 py-3">Description</th>
-          <th scope="col" class="px-6 py-3">Image</th>
-          <th scope="col" class="px-6 py-3">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="text-sm divide-y divide-slate-200 dark:divide-neutral-700">
-        {% for product in products %}
-          <tr class="hover:bg-slate-50 dark:hover:bg-neutral-800">
-            <td class="px-6 py-4">{{ product.libele }}</td>
-            <td class="px-6 py-4">{{ product.description }}</td>
-            <td class="px-6 py-4"><img src="{{ product.image.url }}" alt="product photo" width="50"></td>
-            <td class="px-6 py-4 flex gap-2">
-              <a href="{% url 'product_detail' product.id %}">
-                <svg width="25" viewBox="0 -4 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>view_simple [#815]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-260.000000, -4563.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M216,4409.00052 C216,4410.14768 215.105,4411.07682 214,4411.07682 C212.895,4411.07682 212,4410.14768 212,4409.00052 C212,4407.85336 212.895,4406.92421 214,4406.92421 C215.105,4406.92421 216,4407.85336 216,4409.00052 M214,4412.9237 C211.011,4412.9237 208.195,4411.44744 206.399,4409.00052 C208.195,4406.55359 211.011,4405.0763 214,4405.0763 C216.989,4405.0763 219.805,4406.55359 221.601,4409.00052 C219.805,4411.44744 216.989,4412.9237 214,4412.9237 M214,4403 C209.724,4403 205.999,4405.41682 204,4409.00052 C205.999,4412.58422 209.724,4415 214,4415 C218.276,4415 222.001,4412.58422 224,4409.00052 C222.001,4405.41682 218.276,4403 214,4403" id="view_simple-[#815]"> </path> </g> </g> </g> </g></svg>
-              </a>
-              <a href="{% url 'product_update' product.id %}">
-                <svg width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C12 20.4477 12.4477 20 13 20H21C21.5523 20 22 20.4477 22 21C22 21.5523 21.5523 22 21 22H13C12.4477 22 12 21.5523 12 21Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.7736 8.09994C22.3834 6.48381 22.315 4.36152 21.113 3.06183C20.5268 2.4281 19.6926 2.0233 18.7477 2.00098C17.7993 1.97858 16.8167 2.34127 15.91 3.09985C15.8868 3.11925 15.8645 3.13969 15.8432 3.16111L2.87446 16.1816C2.31443 16.7438 2 17.5051 2 18.2987V19.9922C2 21.0937 2.89197 22 4.00383 22H5.68265C6.48037 22 7.24524 21.6823 7.80819 21.1171L20.7736 8.09994ZM17.2071 5.79295C16.8166 5.40243 16.1834 5.40243 15.7929 5.79295C15.4024 6.18348 15.4024 6.81664 15.7929 7.20717L16.7929 8.20717C17.1834 8.59769 17.8166 8.59769 18.2071 8.20717C18.5976 7.81664 18.5976 7.18348 18.2071 6.79295L17.2071 5.79295Z" fill="#323232"></path> </g></svg>
-              </a>
-              <form method="POST" action="{% url 'product_delete' product.id %}">
-                {% csrf_token %}
-                <button type="submit">
-                  <svg width="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4C5 3.44772 5.44772 3 6 3H18C18.5523 3 19 3.44772 19 4V6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H19V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V8H4C3.44772 8 3 7.55228 3 7C3 6.44772 3.44772 6 4 6H5V4ZM7 8V19H17V8H7Z" fill="#323232"></path> </g></svg>
-                </button>
-              </form>
-              
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    
+{% extends 'products/layout/base.html' %}
+<!--  -->
+{% block title %} Produits {% endblock %} {% block content %}
 
-  </body>
-</html>
+<div class="container mx-auto p-6">
+  <div class="flex justify-between items-center">
+    <div><h1 class="text-3xl font-bold mb-6">Acceuil</h1></div>
+    <div class="text-2xl bg-orange-300 p-1 rounded-lg">
+      <a href="{% url 'table' %}">Table poduits</a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6">
+    {% for product in products %}
+
+    <div class="bg-white rounded-xl shadow p-4">
+      <a href="{% url 'detaille' product.id %}">
+        <img
+          class="w-full h-40 object-cover rounded"
+          src="{{ product.image.url }}"
+          alt=""
+        />
+      </a>
+
+      <h2 class="text-xl font-bold mt-2">{{ product.libele }}</h2>
+
+      <p class="text-blue-600 font-semibold">{{ product.prix }} F CFA</p>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
