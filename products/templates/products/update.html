@@ -39,9 +39,14 @@
           {% render_field form.image class="w-full rounded-lg border border-gray-300 p-2" %}
         </div>
 
-        <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-white">
+        <div class="flex justify-between items-center">
+          <div><button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-white">
           Enregistrer
-        </button>
+        </button></div>
+        <div>
+          <a class="rounded-lg bg-blue-600 px-4 py-2 text-white" href="{% url 'table' %}">Annuler</a>
+        </div>
+        </div>
       </form>
     </div>
   </div>
