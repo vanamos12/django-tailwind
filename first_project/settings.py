@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'theme',
     'authentification',
     'products',
+    'dashboard',
     'widget_tweaks',
 ]
 

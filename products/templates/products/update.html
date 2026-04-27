@@ -1,0 +1,49 @@
+{% extends "products/layout/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Modifier ||{% endblock title %}
+
+{% block content %}
+<section>
+  <div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+    <div class="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-xl">
+      <h1 class="mb-6 text-center text-3xl font-bold text-gray-800">
+        Modifier le produit
+      </h1>
+
+      <form method="POST" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+          <label class="mb-1 block text-sm font-medium text-gray-700">Libelle</label>
+          {% render_field form.libele class="w-full rounded-lg border border-gray-300 p-2" %}
+        </div>
+
+        <div>
+          <label class="mb-1 block text-sm font-medium text-gray-700">Description</label>
+          {% render_field form.description class="h-28 w-full rounded-lg border border-gray-300 p-2" %}
+        </div>
+
+        <div>
+          <label class="mb-1 block text-sm font-medium text-gray-700">Prix</label>
+          {% render_field form.prix class="w-full rounded-lg border border-gray-300 p-2" %}
+        </div>
+
+        <div>
+          <label class="mb-1 block text-sm font-medium text-gray-700">Stock</label>
+          {% render_field form.stock class="w-full rounded-lg border border-gray-300 p-2" %}
+        </div>
+
+        <div>
+          <label class="mb-1 block text-sm font-medium text-gray-700">Image</label>
+          {% render_field form.image class="w-full rounded-lg border border-gray-300 p-2" %}
+        </div>
+
+        <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-white">
+          Enregistrer
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

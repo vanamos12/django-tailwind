@@ -1,0 +1,94 @@
+{% extends "products/layout/base.html" %}
+{% block title %} Table des produits {% endblock title %}
+{% block content %}
+<section class="px-3 py-6 md:px-6">
+  <div class="mx-auto max-w-6xl space-y-6">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h1 class="text-2xl font-bold md:text-3xl">Table des produits</h1>
+      <a
+        href="{% url 'upload' %}"
+        class="inline-flex items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-base font-semibold text-white transition hover:bg-blue-800"
+      >
+        Ajouter un produit
+      </a>
+    </div>
+
+    <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
+      <table class="min-w-full text-left text-sm">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th scope="col" class="px-4 py-3 font-semibold">ID</th>
+            <th scope="col" class="px-4 py-3 font-semibold">Libele</th>
+            <th scope="col" class="px-4 py-3 font-semibold">Image</th>
+            <th scope="col" class="px-4 py-3 text-center font-semibold">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in produits %}
+          <tr class="border-t border-gray-200 odd:bg-gray-50 even:bg-white">
+            <td class="px-4 py-3 font-semibold text-gray-800">{{ product.id }}</td>
+            <td class="px-4 py-3 font-medium text-gray-700">{{ product.libele }}</td>
+            <td class="px-4 py-3">
+              <img
+                src="{{ product.image.url }}"
+                alt="Produit {{ product.libele }}"
+                class="h-12 w-12 rounded-md object-cover"
+              />
+            </td>
+            <td class="px-4 py-3">
+              <div class="flex items-center justify-center gap-1">
+                <a href="{% url 'detaille' product.id %}" class="text-slate-700 hover:text-slate-900" title="Voir">
+                  <span class="material-symbols-outlined">visibility</span>
+                </a>
+                <a href="{% url 'update' product.id %}" class="text-yellow-600 hover:text-yellow-800" title="Modifier">
+                  <span class="material-symbols-outlined">edit</span>
+                </a>
+                <a href="{% url 'delet_product' product.id %}" class="text-red-600 hover:text-red-800" title="Supprimer">
+                  <span class="material-symbols-outlined">delete</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="px-4 py-10 text-center text-gray-500">Aucun produit disponible.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flex items-center justify-center gap-2">
+      {% if produits.has_previous %}
+      <a
+        href="?page={{ produits.previous_page_number }}"
+        class="rounded bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-300"
+      >
+        &larr;
+      </a>
+      {% endif %}
+
+      {% for num in produits.paginator.page_range %}
+      {% if produits.number == num %}
+      <span class="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
+        {{ num }}
+      </span>
+      {% else %}
+      <a href="?page={{ num }}" class="rounded bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-200">
+        {{ num }}
+      </a>
+      {% endif %}
+      {% endfor %}
+
+      {% if produits.has_next %}
+      <a
+        href="?page={{ produits.next_page_number }}"
+        class="rounded bg-gray-200 px-3 py-1 text-sm font-medium text-gray-700 hover:bg-gray-300"
+      >
+        &rarr;
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

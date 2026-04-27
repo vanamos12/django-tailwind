@@ -1,0 +1,25 @@
+{% load static %}
+<!--  -->
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+
+    <!-- Google -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-gray-100">
+    {% block content %}{% endblock %}
+  </body>
+</html>
