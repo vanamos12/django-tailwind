@@ -1,16 +1,57 @@
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>From Produit</title>
-  </head>
-  <body>
-    <form method="POST" action="" enctype="multipart/form-data">
-      {% csrf_token %}
-      <!--  -->
-      {{ form.as_p}}
-      <button type="submit">Ajouter</button>
-    </form>
-  </body>
-</html>
+{% extends "products/layout/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Ajouter un produit{% endblock title %}
+
+{% block content %}
+<section class="flex w-full items-center justify-center pt-10">
+  <div class="flex w-[800px] flex-col rounded-lg px-10 shadow-lg">
+    <h1 class="flex justify-center text-3xl font-extrabold">
+      Ajouter un nouveau produit
+    </h1>
+
+    <div>
+      <form class="flex flex-col gap-y-10" action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="rounded-lg border border-red-300 bg-red-50 p-4 text-red-700">
+          {{ form.errors }}
+        </div>
+        {% endif %}
+
+        <div class="flex flex-col">
+          <label class="text-lg font-semibold" for="libele">Libelle du produit</label>
+          {% render_field form.libele class="w-full rounded-lg border-2 border-gray-300 p-2" %}
+        </div>
+
+        <div class="flex flex-col">
+          <label class="text-lg font-semibold" for="description">Description du produit</label>
+          {% render_field form.description class="rounded-lg border-2 border-gray-300 p-2" %}
+        </div>
+
+        <div class="flex flex-col">
+          <label class="text-lg font-semibold" for="prix">Prix du produit</label>
+          {% render_field form.prix class="rounded-lg border-2 border-gray-300 p-2" %}
+        </div>
+
+        <div class="flex flex-col">
+          <label class="text-lg font-semibold" for="image">Image du produit</label>
+          {% render_field form.image class="rounded-lg border-2 border-gray-300 p-2" %}
+        </div>
+
+        <div class="flex flex-col">
+          <label class="text-lg font-semibold" for="stock">Stock du produit</label>
+          {% render_field form.stock class="rounded-lg border-2 border-gray-300 p-2" %}
+        </div>
+
+        <div class="flex justify-center">
+          <button class="m-4 flex rounded-lg bg-blue-700 p-2 text-xl font-bold text-white hover:cursor-pointer" type="submit">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends "products/layout/base.html" %}
+<!--  -->
+
+<!--  -->
+{% block title %} Table des produits {% endblock title %}
+<!--  -->
+{% block content %}
+<!--  -->
+<section>
+  <div>
+    <div>
+      <div class="flex justify-between py-6 px-2">
+        <div>
+          <h1 class="text-3xl font-bold">Table produits</h1>
+        </div>
+        <div>
+          <a class="flex bg-blue-700 text-white rounded-lg text-xl p-2" href="{% url 'upload' %}">Ajouter un produt</a>
+        </div>
+      </div>
+      <table class="w-full border px-80 table">
+        <thead class="text-white bg-gray-800">
+          <tr>
+            <th class="py-4 px-3">ID</th>
+            <th class="py-4 px-3">Image</th>
+            <th class="py-4 px-3">Voir</th>
+            <th class="py-4 px-3">Modifier</th>
+            <th class="py-4 px-3">Suprimer</th>
+          </tr>
+        </thead>
+        <tbody class="items-center">
+          {% for product in produits %}
+          <tr
+            class="border odd:bg-zinc-700 odd:text-white even:bg-yellow-50 even:text-black"
+          >
+            <td class="p-2 font-bold">{{ product.id }}</td>
+
+            <td class="p-2">
+              <img
+                class="w-[50px] h-[50px] rounded-lg"
+                src="{{ product.image.url }}"
+                alt="test"
+                class="w-12 h-12 object-cover rounded"
+              />
+            </td>
+
+            <td class="p-2 text-center">
+              <a href="{% url 'detaille' product.id %}" class="text-black">
+                <span class="material-symbols-outlined">visibility</span>
+              </a>
+            </td>
+
+            <td class="p-2 text-center">
+              <a
+                href="{% url 'update' product.id %}"
+                class="text-yellow-500 hover:text-yellow-700"
+              >
+                <span class="material-symbols-outlined">edit</span>
+              </a>
+            </td>
+
+            <td class="p-2 text-center">
+              <a
+                href="{% url 'delet_product' product.id %}"
+                class="text-red-500 hover:text-red-700"
+              >
+                <span class="material-symbols-outlined">delete</span>
+              </a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

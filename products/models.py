@@ -7,7 +7,7 @@ class Product(models.Model):
     prix= models.DecimalField(max_digits=10, decimal_places=2)
     description=models.TextField(validators=[MinLengthValidator(10, message="Le nombre de caractere doit suprerieur a 10")])
     stock= models.IntegerField(default=0)
-    image= models.ImageField(default=True)
+    image= models.ImageField(default=True , upload_to='media')
     created_at=models.TimeField(auto_now_add=True)
     def __str__(self):
         return self.libele
