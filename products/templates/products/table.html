@@ -2,6 +2,9 @@
 {% block title %} Table des produits {% endblock title %}
 {% block content %}
 <section class="px-3 py-6 md:px-6">
+  <div>
+    <a class="flex bg-blue-500 text-white rounded-lg p-2 w-[200px] items-center" href="{% url 'allproduct' %}">Retour sur Accuel</a>
+  </div>
   <div class="mx-auto max-w-6xl space-y-6">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <h1 class="text-2xl font-bold md:text-3xl">Table des produits</h1>
