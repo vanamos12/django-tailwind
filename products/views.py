@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import forms
 from .forms import ProductForm
 from .models import Product
+from django.core.paginator import Paginator
 
 # Create your views here.
 def all_product(request):
     products= Product.objects.all()
+    
     return render(request, 'products/produits.html', {"products": products})
 
 
@@ -26,7 +28,10 @@ def product_upload(request):
 
 
 def table_products(request):
-    products= Product.objects.all()
+    liste= Product.objects.all().order_by('-id')
+    pagination= Paginator(liste, 6)
+    number_page= request.GET.get('page')
+    products=pagination.get_page(number_page)
     return render(request, 'products/table.html', {'produits': products})
 
 def delet_product(request, id):
