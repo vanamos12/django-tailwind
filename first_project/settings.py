@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'theme',
     'authentification',
     'products',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

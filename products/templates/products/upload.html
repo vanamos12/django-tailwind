@@ -1,3 +1,4 @@
+{% load widget_tweaks %}
 <!doctype html>
 <html lang="fr">
   <head>
@@ -9,7 +10,15 @@
     <form method="POST" action="" enctype="multipart/form-data">
       {% csrf_token %}
       <!--  -->
-      {{ form.as_p}}
+      {% comment %} {{ form.as_p}} {% endcomment %}
+      <div>
+        <label for="">{{form.libele.label_tag}}</label>
+        {{form.libele}}
+      </div>
+      <div>
+        <label for="">{{form.description.label_tag}}</label>
+        {% render_field form.description class="new_class let_go"%}
+      </div>
       <button type="submit">Ajouter</button>
     </form>
   </body>

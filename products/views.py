@@ -15,7 +15,10 @@ def product_upload(request):
         form= ProductForm(request.POST, request.FILES)
         if form.is_valid():
         
-            form.save()
+            # form.save()
+            Product.objects.create(
+                libele = form.cleaned_data.get('libele')
+            )
             return redirect('allproduct')
     else:
         form= ProductForm()
