@@ -332,6 +332,9 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
+  .w-\[200px\] {
+    width: 200px;
+  }
   .w-\[400px\] {
     width: 400px;
   }
@@ -451,6 +454,9 @@
   }
   .border-red-300 {
     border-color: var(--color-red-300);
+  }
+  .bg-blue-500 {
+    background-color: var(--color-blue-500);
   }
   .bg-blue-600 {
     background-color: var(--color-blue-600);
