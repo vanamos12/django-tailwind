@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwind',
     'theme',
-    'authentification',
+    'authen',
     'products',
     'dashboard',
     'widget_tweaks',
@@ -90,7 +90,7 @@ DATABASES = {
         'HOST':config('DB_HOST'),
         'PORT': config('DB_PORT'),
     }
-}
+} 
 
 
 # Password validation
@@ -142,3 +142,5 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/user-media/'
+
+LOGIN_REDIRECT_URL = 'dashboard/'
