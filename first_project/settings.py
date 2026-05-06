@@ -3,6 +3,7 @@ from pathlib import Path
 from decouple import RepositoryEnv
 from decouple import config
 
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 _env_file = RepositoryEnv(BASE_DIR / '.env')
@@ -24,7 +25,8 @@ def env(name, default=None, cast=str):
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG', default=False, cast=bool)
+# DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -84,11 +86,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT')
+        'PASSWORD': config('DB_PASSWORD'), 
+        'HOST':config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
-}
+} 
 
 
 # Password validation
