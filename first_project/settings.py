@@ -137,3 +137,18 @@ NPM_BIN_PATH = 'C:/Program Files/nodejs/npm.cmd'
 
 MEDIA_URL = '/user-media/'
 MEDIA_ROOT = BASE_DIR / 'uploads'
+
+
+# authentification
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboard_client'
+LOGOUT_REDIRECT_URL = 'login'
+
+# Send Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_PORT')
+
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
