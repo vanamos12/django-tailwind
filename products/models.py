@@ -10,6 +10,10 @@ class Product(models.Model):
     image= models.ImageField(default=True , upload_to='media')
     created_at=models.TimeField(auto_now_add=True)
     
+    class Meta:
+        permissions = [
+            ("view_all_product", "Can view all product"),
+        ]
     def __str__(self):
         return self.libele
 
