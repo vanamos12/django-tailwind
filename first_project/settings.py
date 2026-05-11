@@ -143,4 +143,4 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/user-media/'
 
-LOGIN_REDIRECT_URL = 'dashboard/'
+LOGIN_REDIRECT_URL = 'products/'
