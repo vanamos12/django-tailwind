@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From Produit</title>
+  </head>
+  <body>
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!--  -->
+      <h1>View Product {{ product.id }}</h1>
+      <div>
+        <label for="libele">Libele : </label><span class="text-lg text-gray-500">{{ product.libele }}</span>
+      </div>
+      <div>
+        <label for="description">Description : </label><p class="text-lg text-gray-500">{{ product.description }}</p>
+      </div>
+      <div>
+        <label for="prix">Prix : </label><span class="text-lg text-gray-500">{{ product.prix }}</span>
+      </div>
+      <div>
+        <label for="image">Image</label> 
+        <img src="{{ product.image.url }}" alt="" width="200">
+      </div>
+      <div>
+        <label for="stock">Stock :</label> <span class="text-lg text-gray-500">{{ product.stock }}</span> 
+      </div>
+    </form>
+  </body>
+</html>
