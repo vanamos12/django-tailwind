@@ -10,4 +10,19 @@ User = get_user_model()
 
 @receiver(post_migrate)
 def create_roles_and_permissions(sender, **kwargs):
-    pass
+    clients_group, create = Group.objects.get_or_create(name='clients')
+
+    if create:
+        print('role creer')
+    else:
+        print('le role existe deja')
+
+    sellers_group, _ = Group.objects.get_or_create(name='sellers')
+
+    contentType = ContentType.objects.get_for_model(Product)
+
+    can_view_all_product, _ = Permission.objects.get_or_create(codename='can_view_all_products', name='Can view all product', content_type=contentType)
+
+
+    clients_group.permissions.add(can_view_all_product)
+    # admin_group.permissions.set([can_view_all_product, creat_product,])
