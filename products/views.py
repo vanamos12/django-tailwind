@@ -1,16 +1,22 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 from django.forms import forms
 from .forms import ProductForm
 from .models import Product
 from django.core.paginator import Paginator
+from django.contrib import auth
 
 # Create your views here.
+@login_required(login_url='/', redirect_field_name='login')
+@permission_required(perm='can_view_all_products')
 def all_product(request):
-    products= Product.objects.all()
+    if request.user.has_perm('product.can_view_all_product'):
+        products= Product.objects.all()
     
     return render(request, 'products/produits.html', {"products": products})
 
-
+@login_required(login_url='/', redirect_field_name='login')
+@permission_required(perm='products.add_product')
 def product_upload(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
