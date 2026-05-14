@@ -137,25 +137,9 @@ NPM_BIN_PATH = 'C:/Program Files/nodejs/npm.cmd'
 MEDIA_URL = '/user-media/'
 MEDIA_ROOT = BASE_DIR / 'uploads'
 
+MEDIA_ROOT = BASE_DIR / 'uploads'
+MEDIA_URL = '/user-media/'
 
-# authentification
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'dashboard_client'
-LOGOUT_REDIRECT_URL = 'login'
-
-# Send Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_PORT = env('EMAIL_PORT', cast=int)
-EMAIL_USE_TLS = env('EMAIL_USE_TLS', cast=bool)
-
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-
-AUTH_USER_MODEL = 'authen.User'
-
-# IntechSMS
-INTECHSMS_URL = env('INTECHSMS_URL', default='https://gateway.intechsms.sn/api/send-sms')
-INTECHSMS_APP_KEY = env('INTECHSMS_APP_KEY', default='')
-INTECHSMS_SENDER = env('INTECHSMS_SENDER', default='INTECHSMS')
-OTP_EXPIRE_MINUTES = env('OTP_EXPIRE_MINUTES', default=10, cast=int)
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = 'dashboard/'
+LOGOUT_URL = '/'
