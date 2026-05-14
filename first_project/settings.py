@@ -1,9 +1,6 @@
 
 from pathlib import Path
 from decouple import RepositoryEnv
-from decouple import config
-
-from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 _env_file = RepositoryEnv(BASE_DIR / '.env')
@@ -26,7 +23,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = env('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -84,11 +81,11 @@ WSGI_APPLICATION = 'first_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'), 
-        'HOST':config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 } 
 
@@ -148,9 +145,17 @@ LOGOUT_REDIRECT_URL = 'login'
 
 # Send Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_USE_TLS = config('EMAIL_PORT')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = env('EMAIL_USE_TLS', cast=bool)
 
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+AUTH_USER_MODEL = 'authen.User'
+
+# IntechSMS
+INTECHSMS_URL = env('INTECHSMS_URL', default='https://gateway.intechsms.sn/api/send-sms')
+INTECHSMS_APP_KEY = env('INTECHSMS_APP_KEY', default='')
+INTECHSMS_SENDER = env('INTECHSMS_SENDER', default='INTECHSMS')
+OTP_EXPIRE_MINUTES = env('OTP_EXPIRE_MINUTES', default=10, cast=int)

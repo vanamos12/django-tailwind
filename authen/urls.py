@@ -1,12 +1,12 @@
 from django.urls import path
-from .views import registerViews
-from django.contrib.auth import views as auth_views,logoutView
+from .forms import AuthForm
+from .views import registerViews, verifyOTPViews
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    
-    path('login',loginViews , name='login' ),
-    path('register', registerViews, name='register'),
-    path('', home , name='home'),
-    path('logout',logoutView, name='logout')
-    
+    # path('',loginViews , name='login' ),
+    path('', auth_views.LoginView.as_view(authentication_form=AuthForm), name='login' ),
+    path('register/', registerViews, name='register'),
+    path('verify-otp/', verifyOTPViews, name='verify_otp'),
+    # path('', home , name='home')
 ]

@@ -1,0 +1,44 @@
+{% extends './layout/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Verification OTP{% endblock title %}
+
+{% block content %}
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          Verification du numero
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          Entrez le code envoye au {{ phone }}.
+        </p>
+
+        {% for message in messages %}
+          <p class="text-sm text-green-700">{{ message }}</p>
+        {% endfor %}
+
+        <form class="space-y-4 md:space-y-6" method="post" action="{% url 'verify_otp' %}">
+          {% csrf_token %}
+          {% for field in form %}
+            <div>
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {% render_field field class="w-full rounded-lg border-2 border-gray-300 p-2" %}
+              {% if field.errors %}
+                <p class="text-red-950 text-sm mt-1">{{ field.errors }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button
+            type="submit"
+            class="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Verifier
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

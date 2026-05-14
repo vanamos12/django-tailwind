@@ -1,5 +1,8 @@
-{% extends './layout/base.html' %} {% load widget_tweaks %} {% block title %}
-Login {% endblock title %} {% block content %}
+{% extends './layout/base.html' %} 
+
+{% block title %}Login {% endblock title %}
+{% block content %}
+{% load widget_tweaks %} 
 <section class="bg-gray-50 dark:bg-gray-900">
   <div
     class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
@@ -24,7 +27,11 @@ Login {% endblock title %} {% block content %}
           action="{% url 'login' %}"
           class="bg-white text-gray-500 max-w-[340px] w-full mx-4 md:p-6 p-4 py-8 text-left text-sm rounded-xl"
         >
-          {% csrf_token %} {% comment %}
+          {% csrf_token %} 
+          {% for message in messages %}
+            <p class="text-sm text-green-700">{{ message }}</p>
+          {% endfor %}
+          {% comment %}
           <div
             class="flex items-center my-2 border bg-indigo-500/5 border-gray-500/10 rounded gap-1 pl-2"
           >
@@ -89,19 +96,20 @@ Login {% endblock title %} {% block content %}
             </div>
             <a class="text-blue-600 underline" href="#">Forgot Password</a>
           </div>
-          {% endcomment %} {% if form.non_field_errors %} {% for error in
-          field.non_field_errors %}
-          <p class="text-red-950 text-sm mt-1">{{error}}</p>
-          {% endfor %} {% endif %} {% for field in form %}
+          {% endcomment %} 
+           {% for error in form.non_field_errors %}
+            <p class="text-red-950 text-sm mt-1">{{error}}</p>
+          {% endfor %} 
+          {% for field in form %}
           <div>
             <label for="{{ field.id_for_label }}">{{field.label}}</label>
             {% comment %} {{render_field add_class:'w-full outline-none
-            bg-transparent py-2.5'}} {% endcomment %} {% render_field field
-            class="w-full rounded-lg border-2 border-gray-300 p-2" %} {% if
-            field.errors %}
+            bg-transparent py-2.5'}} {% endcomment %} 
+            {% render_field field class="w-full rounded-lg border-2 border-gray-300 p-2" %} 
+            {% if field.errors %}
             <p class="text-red-950 text-sm mt-1">{{field.errors}}</p>
             {% endif %}
-          </div>
+            </div>
           {% endfor %}
           <button
             type="submit"
